@@ -1,0 +1,6 @@
+N = int(input())
+M = str(input())
+print(N*int(M[-1]))
+print(N*int(M[-2]))
+print(N*int(M[-3]))
+print(N*int(M))
