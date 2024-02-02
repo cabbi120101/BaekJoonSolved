@@ -1,13 +1,16 @@
-N, K = map(int, input().split())
-arr = [tuple(map(int, input().split())) for _ in range(N)]
-ans = len(set(arr))
-limit = 0
+N, k = map(int, input().split())
+student = [[0] * 7 for _ in range(3)] #성별 / 학년별
 
-while arr:
-    for i in set(arr):
-        arr.pop(arr.index(i))
-    limit += 1
-    if limit == K:
-        K = 0
-        ans += 1
-print(ans)
+for _ in range(N):
+    S, Y = map(int, input().split())
+    student[S][Y] += 1
+        
+room = 0
+for i in student:
+    for j in i:
+        if j%k != 0:
+            room += (j // k)+1
+        else:
+            room += (j//k)
+
+print(room)
