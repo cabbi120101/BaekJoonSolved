@@ -11,6 +11,6 @@ def win_chk(num):
 
 T = int(input())
 for tc in range(1, T+1):
-    A = list(map(int, input().split()))
-    B = list(map(int, input().split()))
+    A = list(map(int, input().split()))[1:]
+    B = list(map(int, input().split()))[1:]
     print(win_chk(4))
