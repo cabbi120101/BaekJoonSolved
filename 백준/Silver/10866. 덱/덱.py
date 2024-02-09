@@ -1,26 +1,22 @@
 import sys
-
-input = sys.stdin.readline
-
-n = int(input())
-deq = []
-for _ in range(n):
-    request = input().rstrip('\n')
-    if 'push_front' in request:
-        x = request.split()[1]
-        deq.insert(0,int(x))
-    elif 'push_back' in request:
-        x = request.split()[1]
-        deq.append(int(x))
-    elif 'pop_front' in request:
-        print(deq.pop(0) if deq else -1)
-    elif 'pop_back' in request:
-        print(deq.pop() if deq else -1)
-    elif request=='size':
-        print(len(deq))
-    elif request=='empty':
-        print(1 if len(deq)==0 else 0)
-    elif request=='front':
-        print(deq[0] if deq else -1)
-    elif request=='back':
-        print(deq[-1] if deq else -1)
+from collections import deque
+T = int(input())
+q = deque()
+for tc in range(1,T+1):
+    a = sys.stdin.readline().split()
+    if a[0] == 'push_front':
+        q.appendleft(a[1])
+    elif a[0] == 'push_back':
+        q.append(a[1])
+    elif a[0] == 'pop_front':
+        print(q.popleft() if q else -1)
+    elif a[0] == 'pop_back':
+        print(q.pop() if q else -1)
+    elif a[0] == 'size':
+        print(len(q))
+    elif a[0] == 'empty':
+        print(0 if q else 1)
+    elif a[0] == 'front':
+        print(q[0] if q else -1)
+    else:
+        print(q[-1] if q else -1)
