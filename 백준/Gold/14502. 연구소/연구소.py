@@ -1,5 +1,4 @@
 from collections import deque
-import copy
 from itertools import combinations
 
 def bfs(graph):
@@ -28,7 +27,7 @@ empty_space = [(i, j) for i in range(N) for j in range(M) if arr[i][j] == 0]
 ans = 0
 for comb in combinations(empty_space, 3):
     # 임시 맵 만들기
-    test_map = copy.deepcopy(arr)
+    test_map = [i.copy() for i in arr]
     for y, x in comb:
         test_map[y][x] = 1
     bfs(test_map)
