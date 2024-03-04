@@ -1,12 +1,24 @@
+#2491 수열
+
 N = int(input())
-arr = list(map(int, input().split()))
-ans1 = [1]*N
-ans2 = [1]*N
-for i in range(N-1):
-    if arr[i+1] >= arr[i]:
-        ans1[i+1] += ans1[i]
+num = list(map(int, input().split()))
+# print(num)
 
-    if arr[i+1] <= arr[i]:
-        ans2[i+1] += ans2[i]
+max_cnt = min_cnt = 1
+result = []
+result.append(1)
+for i in range(0, N-1):
+    if num[i] < num[i+1]:
+        max_cnt +=1
+        min_cnt = 1
+    elif num[i] > num[i+1]:
+        min_cnt +=1
+        max_cnt = 1
+    else:
+        max_cnt +=1
+        min_cnt +=1
+    result.append(max_cnt)
+    result.append(min_cnt)
 
-print(max(max(ans1),max(ans2)))
+# print(result)
+print(max(result))
