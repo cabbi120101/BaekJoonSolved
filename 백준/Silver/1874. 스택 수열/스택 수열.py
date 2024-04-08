@@ -1,28 +1,23 @@
-count = 1
-temp = True
-stack = []
-ans = []
-
 N = int(input())
+stack = []
+result = []
+no = True
+now = 1
 for i in range(N):
     num = int(input())
-
-    while count <= num:
-        stack.append(count)
-        ans.append('+')
-        count += 1
-    
+    while now <= num:
+        stack.append(now)
+        result.append('+')
+        now += 1
     if stack[-1] == num:
         stack.pop()
-        ans.append('-')
-    # 스택 수열을 만들 수 없으므로 False
+        result.append('-')
     else:
-        temp = False
+        no = False
         break
 
-
-if temp == False:
-    print("NO")
+if not no:
+    print('NO')
 else:
-    for i in ans:
+    for i in result:
         print(i)
