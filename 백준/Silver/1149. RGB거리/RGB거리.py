@@ -1,13 +1,9 @@
 N = int(input())
-arr = [list(map(int, input().split())) for i in range(N)]
-def chk_min(chk_arr):
-    min_v = 1e9
-    for i in chk_arr:
-        if i < min_v:
-            min_v = i
-    return min_v
+color = [list(map(int, input().split())) for _ in range(N)]
+
 for i in range(1,N):
-    arr[i][0] = chk_min([arr[i - 1][1], arr[i - 1][2]]) + arr[i][0]
-    arr[i][1] = chk_min([arr[i - 1][0], arr[i - 1][2]]) + arr[i][1]
-    arr[i][2] = chk_min([arr[i - 1][0], arr[i - 1][1]]) + arr[i][2]
-print(chk_min(arr[N-1]))
+    color[i][0] = min(color[i-1][1], color[i-1][2]) + color[i][0]
+    color[i][1] = min(color[i-1][0], color[i-1][2]) + color[i][1]
+    color[i][2] = min(color[i-1][0], color[i-1][1]) + color[i][2]
+
+print(min(color[N-1]))
