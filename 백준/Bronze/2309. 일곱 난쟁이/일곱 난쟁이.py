@@ -1,11 +1,13 @@
-arr = sorted(int(input()) for _ in range(9))
-cha = sum(arr) - 100
-for i in arr:
-    if i == cha-i:
-        pass
-    elif cha-i in arr:
-        arr.remove(cha - i)
-        arr.remove(i)
+nan = [int(input()) for i in range(9)]
+nan.sort()
+target = sum(nan) - 100
+for i in range(9):
+    for j in range(i,9):
+        if nan[i]+nan[j] == target:
+            nan.pop(i)
+            nan.pop(j-1)
+            break
+    if len(nan) == 7:
         break
-for j in arr:
-    print(j)
+for i in nan:
+    print(i)
