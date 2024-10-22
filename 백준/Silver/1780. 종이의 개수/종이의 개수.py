@@ -1,32 +1,31 @@
-import sys
-input = sys.stdin.readline
+n = int(input())
+matrix = [list(map(int, input().split())) for _ in range(n)]
 
-def paper(row, col, n):
-    global num_a, num_b, num_c
-    save = arr[row][col]
-    for i in range(n):
-        for j in range(n):
-            if arr[row+i][col+j] != save:
-                for r in range(3):
-                    for c in range(3):
-                        paper(row + r * n // 3, col + c * n // 3, n // 3)
-                return
-    if save == -1:
-        num_a += 1
-    elif save == 0:
-        num_b += 1
+def check_paper(matrix, x, y, size):
+    # 첫 번째 값을 기준으로 모든 값이 같은지 확인
+    first_value = matrix[x][y]
+    for i in range(x, x + size):
+        for j in range(y, y + size):
+            if matrix[i][j] != first_value:
+                return False
+    return True
+
+def count_paper(matrix, x, y, size, counts):
+    # 만약 현재 종이가 모두 같은 숫자라면 카운트
+    if check_paper(matrix, x, y, size):
+        counts[matrix[x][y] + 1] += 1
     else:
-        num_c += 1
-    return 
+        new_size = size // 3
+        for i in range(3):
+            for j in range(3):
+                count_paper(matrix, x + i * new_size, y + j * new_size, new_size, counts)
 
 
-N = int(input())
-arr = [list(map(int, input().split())) for _ in range(N)]
 
-num_a, num_b, num_c = 0, 0, 0
+counts = [0, 0, 0]
 
-paper(0, 0, N)
+count_paper(matrix, 0, 0, n, counts)
 
-print(num_a)
-print(num_b)
-print(num_c)
+print(counts[0]) 
+print(counts[1])  
+print(counts[2]) 
